@@ -47,14 +47,14 @@ import { Component, OnInit } from '@angular/core';
       <hr />
       <h3>*ngFor</h3>
       <div class="row">
-        <div class="col-4" *ngFor="let user of arrUser, index as index,">
+        <div class="col-4" *ngFor="let user of arrUser; index as index">
           <div class="card">
             <img [src]="user.avatar" alt="..." />
             <div class="card-body">
-              <p>ID:{{ index  + 1 }}</p>
-              <p>userName :{{user.userName}}</p>
-              <p>Password :{{user.password}}</p>
-              <p>Email :{{user.email}}</p>
+              <p>ID:{{ index + 1 }}</p>
+              <p>userName :{{ user.userName }}</p>
+              <p>Password :{{ user.password }}</p>
+              <p>Email :{{ user.email }}</p>
             </div>
           </div>
         </div>
@@ -71,9 +71,83 @@ import { Component, OnInit } from '@angular/core';
         </div> -->
       </div>
     </div>
+    <div class="container">
+      <app-demo-ngContent>
+        <img class="logo" src="https://" alt="..." />
+      </app-demo-ngContent>
+      <hr />
+
+      <h3>[ngClass]</h3>
+      <p [ngClass]="{ 'font-chu': fontChu, 'mau-chu': mauChu }">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa veniam
+        fuga et voluptatem, adipisci tempore labore ullam repudiandae suscipit
+        perferendis.
+      </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>userName</th>
+            <th>password</th>
+            <th>email</th>
+            <th>avatar</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr
+            [ngClass]="{ 'bg-dark text-white': index % 2 === 0 }"
+            *ngFor="let user of arrUser; let index = index"
+            
+          >
+            <td>{{ user.userName }}</td>
+            <td>{{ user.password }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.avatar }}</td>
+          </tr> -->
+          <tr [ngClass]="{'bg-dark text-white':index%2===0}" *ngFor="let user of arrUser,let index = index">
+            <td>{{ user.userName }}</td>
+            <td>{{ user.password }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.avatar }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div
+        [ngStyle]="{ 'background-image': 'url(' + backgroundImg + ')' }"
+        style="height:50px"
+      >
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, ipsum
+        repellendus natus et quis ducimus quia consequatur? Dicta, consequuntur
+        magnam?
+      </div>
+      <p [ngStyle]="{ 'font-size': fontSize + 'px' }">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores
+        aperiam doloremque soluta, quia repellendus qui voluptatibus sequi. Nam,
+        sequi consectetur.
+      </p>
+      <button (click)="tangGiamFont(true)">+</button>
+      <button (click)="tangGiamFont(false)">-</button>
+      <h3>Bài tập login</h3>
+      <app-bt-directive></app-bt-directive>
+      <app-bt-qlsp></app-bt-qlsp>
+    </div>
   `,
+  styles: [
+    `
+      .mau-chu {
+        color: red;
+      }
+      .font-chu {
+        font-weight: bold;
+      }
+    `,
+  ],
 })
 export class DirectiveComponent implements OnInit {
+  fontSize: number = 16;
+  backgroundImg: string = 'https://picsum.photos/200/200';
+  mauChu: boolean = true;
+  fontChu: boolean = true;
   arrUser: User[] = [
     {
       userName: 'sideptrai',
@@ -98,6 +172,13 @@ export class DirectiveComponent implements OnInit {
   number: number = 3;
   userName: string = 'sideptrai';
   isLogin: boolean = false;
+  tangGiamFont(tangGiam: boolean) {
+    if (tangGiam) {
+      this.fontSize += 2;
+    } else {
+      this.fontSize -= 2;
+    }
+  }
   login() {
     this.isLogin = true;
   }

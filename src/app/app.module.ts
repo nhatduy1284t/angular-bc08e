@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { BaiTap4Module } from './Components/BaiTap4/BaiTap4.module';
 import { BaiTapLayoutModule } from './Components/BaiTapLayoutComponent/BaiTapLayout.module';
 import { DemoComponent } from './Components/Demo.component';
+import { PropsModule } from './Components/PropsModule/Props.module';
 import { DataBindingModule } from './DataBindingModule/DataBinding.module';
 import { DirectiveModule } from './DirectiveModule/Directive.module';
 
@@ -16,7 +17,8 @@ import { DirectiveModule } from './DirectiveModule/Directive.module';
     BaiTapLayoutModule,
     DataBindingModule,
     DirectiveModule,
-    BaiTap4Module
+    BaiTap4Module,
+    PropsModule
      //Nơi import các module khác của ứng dụng
   ],
   providers: [], //Nơi khai báo các service
